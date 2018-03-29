@@ -2,6 +2,9 @@ var express = require('express');
 var path = require('path');
 var app = express();
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://username:password@ds041432.mlab.com:41432/blog');
+
 var port = 3000;
 
 app.set('views', path.join(__dirname, 'views'));
