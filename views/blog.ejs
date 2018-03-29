@@ -11,41 +11,25 @@
     <% include partials/navbar %>
 
     <div class = "container main_content">
-      <div class = "card">
-        <div class = "card-header">
-          My Third Blog Post
-        </div>
-        <div class = "card-body">
-          <p class = "card-text">
-            This is about my first blog where I made a nodejs site.
-          </p>
-        </div>
+			
+			<% blogs.forEach(function(blog) { %>
+			
+				<div class = "card">
+					
+					<div class = "card-header">
+						<%= blog.title %>
+					</div>
+					
+					<div class = "card-body">
+						<p class = "card-text">
+							<%= blog.text %>
+						</p>
+					</div>
 
-      </div>
-      
-      <div class = "card">
-        <div class = "card-header">
-          My Second Blog Post
-        </div>
-        <div class = "card-body">
-          <p class = "card-text">
-            This is about my first blog where I made a nodejs site.
-          </p>
-        </div>
-
-      </div>
-      
-      <div class = "card">
-        <div class = "card-header">
-          My First Blog Post
-        </div>
-        <div class = "card-body">
-          <p class = "card-text">
-            This is about my first blog where I made a nodejs site.
-          </p>
-        </div>
-
-      </div>
+				</div>
+			
+			<% }) %>
+			
     </div>
     
     <% include partials/footer %>

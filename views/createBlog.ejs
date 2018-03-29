@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<title>Nathan Cooper</title>
+		<link rel = "stylesheet" href = "../stylesheets/main_content.css">
+	</head>
+
+	<body>
+
+		<% include partials/navbar %>
+		<div class = "container main_content">
+			<form id = "blog-form">
+
+				<div class = "form-group">
+					<label for = "blogTitle">Title</label>
+					<input type = "text" class = "form-control" name = "blogTitle" placeholder = "Awesome Title">
+				</div>
+				
+				<div class = "form-group">
+					<label for = "blogText">Text</label>
+					<textarea class = "form-control" name = "blogText" placeholder = "Some amazing blog..." rows = "10"></textarea>
+				</div>
+
+				<input id = "post" type = "button" class = "btn btn-success" value = "Post">
+				
+			</form>
+
+			<% include partials/footer %>
+		</div>
+
+	</body>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script type='text/javascript'>
+		
+		$(document).ready(function() {
+			
+			$("#post").on('click', function() {
+				
+				var blog = {};
+				
+				$.each($("#blog-form").serializeArray(), function(i, field) {
+					
+					blog[field.name] = field.value;
+					
+				});
+				
+				console.log(blog);
+				
+				$.ajax({
+					
+					url: '/database/create',
+					type: 'POST',
+					dataType: 'json',
+					data: JSON.stringify(blog),
+					success: function(result, status, xhr) {
+						
+						console.log(result);
+						window.location = '/blog';
+						
+					},
+					error: function(xhr, status, error) {
+						
+						console.log(error);
+						
+					},
+					contentType: 'application/json'
+					
+				})
+				
+			})
+			
+		})
+		
+	</script>
+
+</html>
